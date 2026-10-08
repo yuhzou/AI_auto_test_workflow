@@ -1,0 +1,119 @@
+# 项目说明（AGENTS 指令）
+
+本项目实现：**需求文档 → 测试用例 → 基于用例探索实际系统 → 固化自动化脚本 → 独立回放**。
+模型逐条完成理解、设计、评审和探索；脚本负责格式转换、准入检查和执行结果记录。
+
+> 本文件依据语雀文档《3、AGENTS.md》设计（原文见 `docs/03-AGENTS原始稿.md`），
+> 技能实现位于 `.agents/skills/`。
+
+## 对话与内容规则
+
+- 当用户上传文档时，先展示项目的七段流程并询问用户需要执行哪些流程步骤
+- 始终使用中文回复。
+- 按 `.agents/skills/` 中相关 SKILL.md 执行。用例、需求内容逐条分析设计，
+  **禁止脚本批量编造内容**。
+- Excel 格式渲染和回填走 skill 脚本，**禁止临时手写 openpyxl**。
+- 路径含空格时必须加引号。
+- `.agents/skills/` 为技能维护源；`.claude/skills/` 为兼容镜像，修改后用
+  `shared/scripts/sync_skills.py` 同步。
+
+## 七段流程
+
+| 阶段 | skill | 产物与门禁 |
+| --- | --- | --- |
+| ①解析 | req-processor | `output/_来源/{文档版本}/解析.md` + images；check_parse.py |
+| ②拆分 | req-processor | `output/{模块}/解析.md` + images；公共拆分报告；check_split.py（不得用源文件自对账） |
+| ③理解 | req-processor | 需求规范.md + REQ清单.json；validate_spec.py；保留疑问 |
+| ④设计 | testcase-builder | 用例数据.json → 详细用例.xlsx（11列）；P0准入 + render_xlsx.py + check_coverage.py |
+| ⑤评审 | testcase-builder | 已评审xlsx + review.json凭据 + 评审报告；完整逐条评审、计算评分、输入指纹 |
+| ⑥读取 | web-automation | read_cases.py --for-exploration；评分≥75，逐条通过且可自动化=是、执行方式=UI |
+| ⑦探索与固化 | web-automation | 实际页面探索 → 逐条证据 → 脚本静态检查 → 独立pytest回放 → 回填结果 |
+
+完整流程依次执行；分步请求检查前置产物。用户说“录制用例”也按探索与固化流程执行。
+需求中的业务目标和预期是依据，定位器、入口、等待方式在真实系统中探索确认。
+缺陷、环境阻塞、需求疑问、当前方式不支持都属于有效探索结果，**不得为生成脚本伪造通过**。
+
+## 目录与事实来源
+
+```plain
+input/                                   # 原始文档，只读
+output/_来源/{文档版本}/解析.md + images/  # 完整转录稿，拆分时不覆盖
+output/_公共/拆分报告.md                   # 功能缩写唯一登记处
+output/_流程/、output/_非功能需求/         # 跨模块内容
+output/{模块}/
+  解析.md + images/
+  需求规范.md + REQ清单.json
+  用例数据.json                           # 用例设计正文唯一事实源
+  详细用例.xlsx                           # 渲染结果
+  评审数据.json                           # 逐条结论、执行方式、评分依据
+  详细用例_已评审.xlsx
+  详细用例_已评审.review.json              # 脚本生成的评审凭据与输入指纹
+  评审报告.md + 需求覆盖率报告.md
+  探索/{TC编号}/记录.json + 证据文件
+  探索/{TC编号}/replays/{时间}/            # pytest日志、JUnit、结果与指纹
+  待固化/                                # 尚未完整实现的草稿，不参与pytest
+tests/
+  conftest.py + .env + .env.example
+  test_*.py                              # 完整可执行脚本；可包含已确认的产品缺陷回归测试
+  data/*.yaml                            # 用例业务数据
+  results/                               # 浏览器trace等执行证据
+```
+
+需求或用例正文变更时，先改来源，再渲染、评审、探索受影响条目。
+旧指纹失效时不得沿用“已验证”结论。评审和运行状态分别存储，不能用文件存在或
+文件名“已评审”证明完成。已有旧产物须重新过门禁，**禁止自动盖章**。
+
+## 全局规则
+
+1. 编号为 `REQ_{功能缩写}_{三位序号}`、`TC_{功能缩写}_{三位序号}`；只增不改不复用，废弃保留。
+2. 每条用例关联需求；覆盖率脚本只证明**需求关联覆盖**，不证明场景充分、自动化完成或执行通过。
+3. 第8节未确认的P0允许在规范中记录，但必须阻塞用例设计与后续探索；不得把“已忽略”当成确认。
+4. 禁止猜测文档未明确的业务规则。设计阶段不编造URL、DOM、locator；定位未知通常不构成需求阻塞。
+5. 每条用例区分可自动化性与执行方式（UI/API/性能/人工/待定）。本流程自动消费评审通过的UI用例，其他条目记录去向。
+6. 探索须保留实际操作和预期/实际对照证据。能稳定复现的产品缺陷可固化为失败测试，不改预期、不用xfail/skip掩盖。
+7. 前置条件须由fixture或实际操作建立；新浏览器上下文不等于后端数据隔离。说明数据准备、唯一性和清理方式。
+8. 未完成、TODO、猜测定位器脚本放 `output/{模块}/待固化/`；正式脚本必须有可执行断言。pytest收集时执行静态门禁。
+9. 独立回放不能继承探索会话；使用 `finalize_exploration.py --run` 记录真实退出码、JUnit和指纹。
+10. 自愈只修定位、等待和执行方式，不删步骤/断言，不改预期、编号、函数名或文件名。先分类根因，不能将产品缺陷改绿。
+11. `input/` 只读；新版本需求另行入库。
+12. **执行环境门禁**：探索网站、业务请求、业务pytest和独立回放前，用户必须明确提供测试URL，
+    或明确指定本次使用的环境配置文件。旧.env、需求链接或历史环境文件存在不代表可执行；
+    缺少用户指示时先索取环境并等待，文档工作和离线框架检查可继续。
+    同一环境已由用户提供/指定后不重复确认，更换环境按用户新指示更新。
+13. 收到明确环境信息后才填写 `tests/.env` 和 `tests/environment.json`；来源记录包含
+    base_url、provided_by=user、source（用户消息/指定文件说明，不含凭据）。
+    执行前运行 `shared/scripts/environment_gate.py`，记录与有效BASE_URL必须一致。
+    禁止AI根据猜测或旧文件自行补写“用户已提供”。
+
+## 数据分层
+
+- `tests/.env`：环境URL、预置账号凭据等，通过 `env()` 读取。
+- 用例“测试数据”：JSON对象；录制后写入 `tests/data/*.yaml`。
+  注册输入、错误密码、手机号边界值等是业务数据，可在此声明；真实环境凭据不得混入。
+- 需求、用例、评审、探索/回放状态分别保存。格式以
+  `.agents/skills/shared/references/case-format-contract.md` 为准。
+
+## 命令
+
+```bash
+uv sync
+uv run playwright install chromium
+
+uv run python .agents/skills/req-processor/scripts/check_parse.py --md "output/_来源/{文档版本}/解析.md"
+uv run python .agents/skills/req-processor/scripts/check_split.py --source "output/_来源/{文档版本}/解析.md" --input-dir output
+uv run python .agents/skills/req-processor/scripts/validate_spec.py --module "{模块}"
+uv run python .agents/skills/testcase-builder/scripts/render_xlsx.py --module "{模块}" --json "output/{模块}/用例数据.json"
+uv run python .agents/skills/testcase-builder/scripts/check_coverage.py --module "{模块}"
+uv run python .agents/skills/testcase-builder/scripts/update_review.py "output/{模块}/详细用例.xlsx" "output/{模块}/详细用例_已评审.xlsx" "output/{模块}/评审数据.json"
+uv run python .agents/skills/web-automation/examples/read_cases.py "output/{模块}/详细用例_已评审.xlsx" --for-exploration
+uv run python .agents/skills/web-automation/scripts/finalize_exploration.py "output/{模块}/探索/{TC编号}/记录.json" --run
+uv run pytest tests/ -v
+
+uv run python .agents/skills/shared/scripts/environment_gate.py
+uv run python .agents/skills/shared/scripts/script_guard.py tests/
+uv run python .agents/skills/shared/scripts/sync_skills.py
+```
+
+当前历史脚本有未完成内容时，全量pytest会明确拒绝执行；按探索流程逐条完成，
+不能删除TODO注释冒充实现。业务用例文件不作为框架单元测试；
+框架回归命令：`uv run pytest .agents/skills/shared/tests -q`。

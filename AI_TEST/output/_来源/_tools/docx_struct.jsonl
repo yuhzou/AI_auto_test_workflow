@@ -1,0 +1,35 @@
+{"i": 1, "type": "p", "style": "Title", "num": null, "images": [], "links": [], "runs": [{"t": "大转盘优化", "b": false, "i": false}], "text": "大转盘优化"}
+{"i": 2, "type": "p", "style": null, "num": null, "images": [], "links": [], "runs": [{"t": "本文档整理自两个 Axure 原型页面，内容包括活动管理端新增的“是否绑定银行卡”配置项，以及 H5 端绑定银行卡弹窗的文案与交互说明，供评审与开发参考。", "b": false, "i": false}], "text": "本文档整理自两个 Axure 原型页面，内容包括活动管理端新增的“是否绑定银行卡”配置项，以及 H5 端绑定银行卡弹窗的文案与交互说明，供评审与开发参考。"}
+{"i": 3, "type": "tbl", "rows": [["原型页面 1", "Page 1（活动管理 - 大转盘设置）：新增“是否绑定银行卡”开关"], ["原型页面 2", "H5页面：绑定银行卡弹窗提示"], ["整理日期", "2026年10月7日"]]}
+{"i": 4, "type": "p", "style": null, "num": null, "images": [], "links": [], "runs": [{"t": "原型链接", "b": true, "i": false}], "text": "原型链接"}
+{"i": 5, "type": "p", "style": null, "num": null, "images": [], "links": [{"rid": "rId10", "target": "https://ce9g6h.axshare.com/?g=14&id=klp8kv&p=page_1", "text": "https://ce9g6h.axshare.com/?g=14&id=klp8kv&p=page_1"}], "runs": [{"t": "Page 1：", "b": false, "i": false}], "text": "Page 1：https://ce9g6h.axshare.com/?g=14&id=klp8kv&p=page_1"}
+{"i": 6, "type": "p", "style": null, "num": null, "images": [], "links": [{"rid": "rId11", "target": "https://ce9g6h.axshare.com/?g=14&id=7q6ab2&p=h5%E9%A1%B5%E9%9D%A2", "text": "https://ce9g6h.axshare.com/?g=14&id=7q6ab2&p=h5%E9%A1%B5%E9%9D%A2"}], "runs": [{"t": "H5页面：", "b": false, "i": false}], "text": "H5页面：https://ce9g6h.axshare.com/?g=14&id=7q6ab2&p=h5%E9%A1%B5%E9%9D%A2"}
+{"i": 7, "type": "p", "style": "Heading1", "num": null, "images": [], "links": [], "runs": [{"t": "一、活动管理端新增内容", "b": false, "i": false}], "text": "一、活动管理端新增内容"}
+{"i": 8, "type": "p", "style": null, "num": null, "images": [], "links": [], "runs": [{"t": "大转盘设置页的“基础信息”区域新增“是否绑定银行卡”开关，位置在“首次提取无需实名验证”右侧，与“是否开启实名验证”“是否开启绑定手机验证”同属一行区域，开关默认为关闭状态。", "b": false, "i": false}], "text": "大转盘设置页的“基础信息”区域新增“是否绑定银行卡”开关，位置在“首次提取无需实名验证”右侧，与“是否开启实名验证”“是否开启绑定手机验证”同属一行区域，开关默认为关闭状态。"}
+{"i": 9, "type": "p", "style": null, "num": null, "images": [{"rid": "rId12", "target": "media/image1.png"}], "links": [], "runs": [], "text": ""}
+{"i": 10, "type": "p", "style": null, "num": null, "images": [], "links": [], "runs": [{"t": "图 1 活动管理 - 大转盘设置：新增“是否绑定银行卡”开关（截自原型 Page 1）", "b": false, "i": false}], "text": "图 1 活动管理 - 大转盘设置：新增“是否绑定银行卡”开关（截自原型 Page 1）"}
+{"i": 11, "type": "p", "style": null, "num": null, "images": [], "links": [], "runs": [{"t": "原型原文：", "b": true, "i": false}], "text": "原型原文："}
+{"i": 12, "type": "p", "style": "ListBullet", "num": null, "images": [], "links": [], "runs": [{"t": "活动管理里面大转盘活动新增是否绑定银行卡功能开关；", "b": false, "i": false}], "text": "活动管理里面大转盘活动新增是否绑定银行卡功能开关；"}
+{"i": 13, "type": "p", "style": "ListBullet", "num": null, "images": [], "links": [], "runs": [{"t": "开关默认为关闭状态，开启后H5需要弹窗相应提示绑定弹窗；", "b": false, "i": false}], "text": "开关默认为关闭状态，开启后H5需要弹窗相应提示绑定弹窗；"}
+{"i": 14, "type": "p", "style": "ListBullet", "num": null, "images": [], "links": [], "runs": [{"t": "提示弹出为第二次免费抽奖后点击“按钮”时候弹窗提示去绑定银行卡；", "b": false, "i": false}], "text": "提示弹出为第二次免费抽奖后点击“按钮”时候弹窗提示去绑定银行卡；"}
+{"i": 15, "type": "p", "style": "Heading1", "num": null, "images": [], "links": [], "runs": [{"t": "二、H5 端绑定银行卡弹窗", "b": false, "i": false}], "text": "二、H5 端绑定银行卡弹窗"}
+{"i": 16, "type": "p", "style": null, "num": null, "images": [], "links": [], "runs": [{"t": "H5 页面在免费抽奖场景中新增绑定银行卡弹窗，使用通用弹窗样式，包含提示文案、主按钮与关闭入口。", "b": false, "i": false}], "text": "H5 页面在免费抽奖场景中新增绑定银行卡弹窗，使用通用弹窗样式，包含提示文案、主按钮与关闭入口。"}
+{"i": 17, "type": "p", "style": null, "num": null, "images": [{"rid": "rId13", "target": "media/image2.png"}], "links": [], "runs": [], "text": ""}
+{"i": 18, "type": "p", "style": null, "num": null, "images": [], "links": [], "runs": [{"t": "图 2 H5 绑定银行卡弹窗：含“去绑定”按钮与右上角关闭“X”（截自原型 H5页面）", "b": false, "i": false}], "text": "图 2 H5 绑定银行卡弹窗：含“去绑定”按钮与右上角关闭“X”（截自原型 H5页面）"}
+{"i": 19, "type": "p", "style": null, "num": null, "images": [], "links": [], "runs": [{"t": "弹窗内容：", "b": true, "i": false}], "text": "弹窗内容："}
+{"i": 20, "type": "p", "style": "ListBullet", "num": null, "images": [], "links": [], "runs": [{"t": "弹窗标题：提示", "b": false, "i": false}], "text": "弹窗标题：提示"}
+{"i": 21, "type": "p", "style": "ListBullet", "num": null, "images": [], "links": [], "runs": [{"t": "提示文案：恭喜你获得提现资格，为方便您快速提现，请绑定银行卡", "b": false, "i": false}], "text": "提示文案：恭喜你获得提现资格，为方便您快速提现，请绑定银行卡"}
+{"i": 22, "type": "p", "style": "ListBullet", "num": null, "images": [], "links": [], "runs": [{"t": "主按钮：去绑定（点击跳转到绑定银行卡页面，页面使用通用弹窗）", "b": false, "i": false}], "text": "主按钮：去绑定（点击跳转到绑定银行卡页面，页面使用通用弹窗）"}
+{"i": 23, "type": "p", "style": "ListBullet", "num": null, "images": [], "links": [], "runs": [{"t": "关闭按钮：右上角“X”（点击关闭弹窗，返回原页面）", "b": false, "i": false}], "text": "关闭按钮：右上角“X”（点击关闭弹窗，返回原页面）"}
+{"i": 24, "type": "p", "style": null, "num": null, "images": [], "links": [], "runs": [{"t": "原型原文：", "b": true, "i": false}], "text": "原型原文："}
+{"i": 25, "type": "p", "style": "ListBullet", "num": null, "images": [], "links": [], "runs": [{"t": "H5新增绑定银行卡弹窗提示，点击去绑定跳转到绑定银行卡页面，页面使用通用弹窗；", "b": false, "i": false}], "text": "H5新增绑定银行卡弹窗提示，点击去绑定跳转到绑定银行卡页面，页面使用通用弹窗；"}
+{"i": 26, "type": "p", "style": "ListBullet", "num": null, "images": [], "links": [], "runs": [{"t": "提示弹出为第二次免费抽奖后点击“按钮”时候弹窗提示去绑定银行卡；", "b": false, "i": false}], "text": "提示弹出为第二次免费抽奖后点击“按钮”时候弹窗提示去绑定银行卡；"}
+{"i": 27, "type": "p", "style": "ListBullet", "num": null, "images": [], "links": [], "runs": [{"t": "点击x号，关闭弹窗返回原页面，再次操作继续弹窗提示；", "b": false, "i": false}], "text": "点击x号，关闭弹窗返回原页面，再次操作继续弹窗提示；"}
+{"i": 28, "type": "p", "style": "Heading1", "num": null, "images": [], "links": [], "runs": [{"t": "三、需求要点汇总", "b": false, "i": false}], "text": "三、需求要点汇总"}
+{"i": 29, "type": "tbl", "rows": [["序号", "需求点", "说明"], ["1", "新增“是否绑定银行卡”开关", "位于活动管理 - 大转盘设置 - 基础信息区域，默认关闭。"], ["2", "弹窗触发条件", "开关开启后，H5 端在第二次免费抽奖后点击按钮时弹出绑定银行卡提示。"], ["3", "弹窗样式与文案", "使用通用弹窗；标题为“提示”；文案为“恭喜你获得提现资格，为方便您快速提现，请绑定银行卡”；主按钮为“去绑定”；右上角为关闭“X”。"], ["4", "点击“去绑定”", "跳转到绑定银行卡页面。"], ["5", "点击关闭“X”", "关闭弹窗并返回原页面，再次操作仍会弹出提示。"]]}
+{"i": 30, "type": "p", "style": "Heading1", "num": null, "images": [], "links": [], "runs": [{"t": "四、待确认事项", "b": false, "i": false}], "text": "四、待确认事项"}
+{"i": 31, "type": "p", "style": "ListBullet", "num": null, "images": [], "links": [], "runs": [{"t": "“第二次免费抽奖后点击‘按钮’”中按钮的具体名称与位置，原型原文仅表述为“按钮”。", "b": false, "i": false}], "text": "“第二次免费抽奖后点击‘按钮’”中按钮的具体名称与位置，原型原文仅表述为“按钮”。"}
+{"i": 32, "type": "p", "style": "ListBullet", "num": null, "images": [], "links": [], "runs": [{"t": "开关关闭时的行为：不弹出绑定银行卡提示弹窗（按“开关默认为关闭状态”推断，需确认）。", "b": false, "i": false}], "text": "开关关闭时的行为：不弹出绑定银行卡提示弹窗（按“开关默认为关闭状态”推断，需确认）。"}
+{"i": 33, "type": "p", "style": "ListBullet", "num": null, "images": [], "links": [], "runs": [{"t": "弹窗是否需要判断用户是否已绑定银行卡，已绑定用户是否仍弹出提示。", "b": false, "i": false}], "text": "弹窗是否需要判断用户是否已绑定银行卡，已绑定用户是否仍弹出提示。"}
+{"i": 34, "type": "p", "style": "ListBullet", "num": null, "images": [], "links": [], "runs": [{"t": "该开关与弹窗是否影响 APP 端，原型页面仅说明 H5 端。", "b": false, "i": false}], "text": "该开关与弹窗是否影响 APP 端，原型页面仅说明 H5 端。"}
+{"i": 34, "type": "other", "tag": "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}sectPr"}

@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "skills": {
+    "mineru": {
+      "source": "opendatalab/mineru",
+      "sourceType": "github",
+      "skillPath": "skills/mineru/SKILL.md",
+      "computedHash": "6d873bbe5fc921d48b85aae566c1409226a73b22ffdec98a06766cfcce6f0212"
+    },
+    "xlsx": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/xlsx/SKILL.md",
+      "computedHash": "cbaaabead69c5e03643f116cde6a396ad53f6da058da6eaa7bad6c4fbafe6026"
+    }
+  }
+}

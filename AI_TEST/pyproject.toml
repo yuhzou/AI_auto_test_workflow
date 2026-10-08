@@ -1,0 +1,15 @@
+[project]
+name = "auto-test-pipeline"
+version = "0.1.0"
+description = "需求文档 → 测试用例 → 真实系统探索 → 固化脚本 → 独立回放 的自动化测试流水线 skills"
+requires-python = ">=3.10"
+dependencies = [
+  "pytest>=8.0",
+  "playwright>=1.40",
+  "pyyaml>=6.0",
+  "openpyxl>=3.1",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
